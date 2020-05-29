@@ -1,0 +1,33 @@
+<h2>@{{user.username}}</h2>
+
+<h4>Tweets: {{tweets|length}}</h4>
+
+<h4>Following: {{user.following.all|length}}</h4>
+
+<h4><a href="{% url 'homepage' %}">Home Page</a></h4>
+
+{% if request.user.is_active %}
+
+{% if request.user != user %}
+
+{% if user not in request.user.following.all %}
+
+<a href="{% url 'follow_user' user.id%}">Follow User</a>
+
+{% else %}
+
+<a href="{% url 'unfollow_user' user.id%}">Unfollow User</a>
+
+{% endif %}
+{% endif %}
+{% endif %}
+
+
+{% for tweet in tweets %}
+    <hr>
+    <h5><a href="{% url 'user_profile' tweet.submitted_by.username%}">{{tweet.submitted_by}}</a></h5>
+    <h5><a href="{% url 'tweet_detail' tweet.id %}">{{tweet.time}}</a></h5>
+    <p>{{tweet.body}}</p>
+    <br>
+    <hr>
+{% endfor %}

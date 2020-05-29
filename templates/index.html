@@ -1,0 +1,13 @@
+<h2>Homepage | {{ request.user.username }}</h2>
+<h4><a href="{% url 'add_tweet' %}">Create a Tweet!</a></h4>
+<h4><a href="{% url 'user_profile' user.username %}">Profile</a></h4>
+<h4><a href="{% url 'notification' %}">Notifications : {{num_of_alerts|length}}</a></h4>
+<h4><a href="{% url 'logout' %}"> Logout </a></h4>
+
+{% for tweet in tweets %}
+    <hr>
+    <h5><a href="{% url 'user_profile' tweet.submitted_by.username%}">{{tweet.submitted_by}}</a></h5>
+    <h5><a href="{% url 'tweet_detail' tweet.id %}">{{tweet.time}}</a></h5>
+    <p>{{tweet.body}}</p>
+    <br>
+{% endfor %}

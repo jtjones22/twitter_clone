@@ -1,0 +1,8 @@
+<h2>Tweet Details</h2>
+<h4><a href="{% url 'homepage' %}">Home Page</a></h4>
+<hr>
+
+</h3><a href="{% url 'user_profile' tweet.submitted_by %}">{{tweet.submitted_by}}</a></h3>
+<h5>{{tweet.time}}</h5>
+<br>
+<body>{{tweet.body}}</body>
