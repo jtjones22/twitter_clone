@@ -36,6 +36,8 @@ def add_tweet_view(request):
                         return HttpResponseRedirect(reverse('homepage'))
                     else:
                         messages.error(request, 'User does not exist!')
+                else:
+                    messages.error(request, 'User does not exist!')
     form = AddTweetForm()
     context = {'form': form}
     return render(request, html, context)
